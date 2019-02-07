@@ -2,15 +2,16 @@ package edu.cnm.deepdive;
 
 public class Palindrome {
 
-  public static boolean test(String candidate) {
-    if (candidate.length()<= 1) {
-      return true;
-    }
-    if (candidate.charAt(0)== candidate.charAt(candidate.length()-1)
-    && test(candidate.substring(1, candidate.length()-1))){
-      return true;
-    }
-    return false;
+  public static boolean test(String candidate){
+  String simpleCandidate = candidate.toLowerCase().replaceAll("[a-z0-9]]","");
+  //TODO assign simpleCandidate from candidate, stripping out spaces & punctuation.
+    return testSimple(simpleCandidate);
+  }
+
+  private static boolean testSimple(String candidate) {
+    return (candidate.length() <= 1)
+        || (candidate.charAt(0) == candidate.charAt(candidate.length() - 1)
+        && testSimple(candidate.substring(1, candidate.length() - 1)));
   }
 
 }
